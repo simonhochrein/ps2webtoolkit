@@ -37654,7 +37654,7 @@
     var tld = "(?:\\.(?:[a-z\\u00a1-\\uffff]{2,}))";
     var port = "(?::\\d{2,5})?";
     var path2 = '(?:[/?#][^\\s"]*)?';
-    var regex = "(?:".concat(protocol, "|www\\.)").concat(auth, "(?:localhost|").concat(ipv4, "|").concat(ipv6, "|").concat(host).concat(domain).concat(tld, ")").concat(port).concat(path2);
+    var regex = "(?:".concat(protocol, "|docs\\.)").concat(auth, "(?:localhost|").concat(ipv4, "|").concat(ipv6, "|").concat(host).concat(domain).concat(tld, ")").concat(port).concat(path2);
     urlReg = new RegExp("(?:^".concat(regex, "$)"), "i");
     return urlReg;
   };
@@ -63377,7 +63377,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     return routes;
   }
   var defaultMethod = "get";
-  var defaultEncType = "application/x-www-form-urlencoded";
+  var defaultEncType = "application/x-docs-form-urlencoded";
   function isHtmlElement(object4) {
     return object4 != null && typeof object4.tagName === "string";
   }
@@ -63415,7 +63415,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     return _formDataSupportsSubmitter;
   }
   var supportedFormEncTypes = /* @__PURE__ */ new Set([
-    "application/x-www-form-urlencoded",
+    "application/x-docs-form-urlencoded",
     "multipart/form-data",
     "text/plain"
   ]);

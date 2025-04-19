@@ -4,14 +4,14 @@ import { readFileSync } from "node:fs";
 
 let context = await esbuild.context({
   entryPoints: ["src/index.tsx"],
-  outdir: "www",
+  outdir: "docs",
   bundle: true,
   sourcemap: true,
 });
 
 context.serve({
   port: 8000,
-  servedir: "www",
+  servedir: "docs",
 });
 
 httpProxy
