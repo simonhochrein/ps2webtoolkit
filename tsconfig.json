@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "jsx": "preserve",
+    "target": "ESNext",
+    "moduleResolution": "bundler",
+    "sourceMap": true,
+  }
+}
