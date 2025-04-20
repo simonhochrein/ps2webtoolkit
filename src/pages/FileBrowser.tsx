@@ -2,7 +2,6 @@ import {
   Breadcrumb,
   Flex,
   Layout,
-  List,
   Table,
   TableColumnsType,
   Typography,
@@ -95,41 +94,43 @@ export const FileBrowser = () => {
       <Layout.Content
         style={{ flex: 1, height: 0, overflowY: "auto", padding: "1rem" }}
       >
-        <Breadcrumb
-          itemRender={(v) =>
-            v.key == stack.length ? (
-              v.title
-            ) : (
-              <a onClick={v.onClick}>{v.title}</a>
-            )
-          }
-          items={[
-            {
-              key: 0,
-              title: "Root",
-              onClick: () => setStack([]),
-            },
-            ...stack.map((item, i) => ({
-              key: i + 1,
-              title: item,
-              onClick: () => setStack(stack.slice(0, i + 1)),
-            })),
-          ]}
-        ></Breadcrumb>
-        <Table
-          rowKey={"name"}
-          style={{ height: "min-content" }}
-          dataSource={files}
-          pagination={false}
-          columns={columns}
-          onRow={(row) => ({
-            onClick: (event) => {
-              if (row.kind == "directory") {
-                setStack([...stack, row.name]);
-              }
-            },
-          })}
-        />
+        <Flex gap={'1rem'} vertical>
+          <Breadcrumb
+            itemRender={(v) =>
+              v.key == stack.length ? (
+                v.title
+              ) : (
+                <a onClick={v.onClick}>{v.title}</a>
+              )
+            }
+            items={[
+              {
+                key: 0,
+                title: "Root",
+                onClick: () => setStack([]),
+              },
+              ...stack.map((item, i) => ({
+                key: i + 1,
+                title: item,
+                onClick: () => setStack(stack.slice(0, i + 1)),
+              })),
+            ]}
+          />
+          <Table
+            rowKey={"name"}
+            style={{ height: "min-content" }}
+            dataSource={files}
+            pagination={false}
+            columns={columns}
+            onRow={(row) => ({
+              onClick: () => {
+                if (row.kind == "directory") {
+                  setStack([...stack, row.name]);
+                }
+              },
+            })}
+          />
+        </Flex>
       </Layout.Content>
     </Layout>
   );

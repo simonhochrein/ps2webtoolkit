@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
+  Alert,
   App as AntApp,
   Button,
+  Card,
   ConfigProvider,
   Flex,
   Layout,
@@ -22,7 +24,14 @@ import {
   UploadOutlined,
 } from "@ant-design/icons";
 import { FileProvider, useFiles } from "./FileContext";
-import { HashRouter, Route, Routes, useLocation, useNavigate, useRoutes } from "react-router";
+import {
+  HashRouter,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+  useRoutes,
+} from "react-router";
 import { FileBrowser } from "./pages/FileBrowser";
 import { FMCB } from "./pages/FMCB";
 
@@ -51,20 +60,24 @@ const items: MenuItem[] = [
   },
 ];
 
+function isSupportedBrowser() {
+  return !!window.showDirectoryPicker;
+}
+
 const Page = () => {
   const { load } = useFiles();
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
   const navigate = useNavigate();
 
   const key = useMemo(() => {
     return pathname.split("/").pop();
-  }, [pathname])
+  }, [pathname]);
 
   const handleNavigation = (e) => {
     navigate({
-      pathname: `/${e.key}`
-    })
-  }
+      pathname: `/${e.key}`,
+    });
+  };
 
   return (
     <Layout style={{ flex: 1 }}>
@@ -80,7 +93,13 @@ const Page = () => {
               PS2 Web Toolkit
             </Typography>
           </Flex>
-          <Menu onClick={handleNavigation} selectedKeys={[key]} style={{ flex: 1 }} items={items} mode={"inline"} />
+          <Menu
+            onClick={handleNavigation}
+            selectedKeys={[key]}
+            style={{ flex: 1 }}
+            items={items}
+            mode={"inline"}
+          />
           <div
             style={{
               padding: "1rem",
@@ -110,6 +129,20 @@ const Page = () => {
 };
 
 export const App = () => {
+  if (!isSupportedBrowser()) {
+    return (
+      <Flex style={{ flex: 1, padding: "1rem" }} vertical>
+        <Alert
+          message={"Unsupported Browser"}
+          description={
+            "Please download Google Chrome or another browser that supports File System Access API"
+          }
+          type={"error"}
+        />
+      </Flex>
+    );
+  }
+
   return (
     <DBProvider>
       <ConfigProvider>
