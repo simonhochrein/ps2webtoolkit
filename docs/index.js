@@ -82466,7 +82466,8 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           const max2 = Object.entries(result).length;
           let i = 0;
           for (const fileName in result) {
-            if (fileName.startsWith("__MACOSX")) {
+            console.log(fileName, fileName.includes(".DS_Store"));
+            if (fileName.startsWith("__MACOSX") || fileName.includes(".DS_Store")) {
               i++;
               continue;
             }
