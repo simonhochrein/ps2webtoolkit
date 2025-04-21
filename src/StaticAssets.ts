@@ -12,9 +12,9 @@ export class StaticAssets {
 
   private static resolve(b: string): string {
     if (this.base.endsWith("/")) {
-      return this.base + b;
+      return StaticAssets.base + b;
     } else {
-      return this.base + "/" + b;
+      return StaticAssets.base + "/" + b;
     }
   }
 

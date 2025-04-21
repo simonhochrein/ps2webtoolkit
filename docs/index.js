@@ -82492,7 +82492,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   };
 
   // src/StaticAssets.ts
-  var StaticAssets = class {
+  var StaticAssets = class _StaticAssets {
     static async fetch(path2) {
       const arrayBuffer = await fetch(this.resolve(path2)).then(
         (res) => res.arrayBuffer()
@@ -82501,9 +82501,9 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     }
     static resolve(b) {
       if (this.base.endsWith("/")) {
-        return this.base + b;
+        return _StaticAssets.base + b;
       } else {
-        return this.base + "/" + b;
+        return _StaticAssets.base + "/" + b;
       }
     }
     static base = location.pathname;
