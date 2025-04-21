@@ -10,6 +10,16 @@ export class FileSystem {
     return await writable.text();
   }
 
+  async writeFile(path: string, text: string) {
+    const parts = path.split("/");
+    const parent = await this.getHandle(parts.slice(0, -1));
+
+    const handle = await parent.getFileHandle(parts.pop());
+    const writable = await handle.createWritable();
+    await writable.write(text);
+    await writable.close();
+  }
+
   async fileExists(path: string): Promise<boolean> {
     try {
       const parts = path.split("/");
