@@ -21,6 +21,7 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
+import { PS2WTLayout } from "../layout";
 
 type CNF = Record<string, string>;
 
@@ -160,13 +161,13 @@ export const FMCB: FC = () => {
         .getFileHandle("FREEMCB.CNF", { create: true })
         .then(async (output) => {
           let text = "";
-          for(const key in cnf) {
+          for (const key in cnf) {
             text += `${key} = ${cnf[key]}\n`;
           }
 
-          for(let i = 0; i < bootEntries.length; i++) {
+          for (let i = 0; i < bootEntries.length; i++) {
             text += `name_OSDSYS_ITEM_${i} = ${bootEntries[i].name}\n`;
-            for(let j = 0; j < bootEntries[i].paths.length; j++) {
+            for (let j = 0; j < bootEntries[i].paths.length; j++) {
               text += `path${j}_OSDSYS_ITEM_${i} = ${bootEntries[i].paths[j]}\n`;
             }
           }
@@ -194,46 +195,28 @@ export const FMCB: FC = () => {
   };
 
   return (
-    <Layout style={{ height: "100vh", overflow: "hidden" }}>
-      <Layout.Header
-        style={{
-          backgroundColor: colors.blue[5],
-        }}
-      >
-        <Flex align={"center"} style={{ height: "100%" }}>
-          <Typography.Title level={4} style={{ margin: 0, color: "white" }}>
-            Free McBoot Configurator
-          </Typography.Title>
+    <PS2WTLayout title={"FreeMcBoot Settings"}>
+      <Flex vertical gap={"1rem"}>
+        <Flex>
+          <Button type={"primary"} onClick={save}>
+            Save
+          </Button>
         </Flex>
-      </Layout.Header>
-      <Layout.Content
-        style={{ flex: 1, height: 0, overflowY: "auto", padding: "1rem" }}
-      >
-        <Flex vertical gap={"1rem"}>
-          <Flex>
-            <Button type={"primary"} onClick={save}>
-              Save
-            </Button>
-          </Flex>
-          <DndContext
-            modifiers={[restrictToVerticalAxis]}
-            onDragEnd={onDragEnd}
+        <DndContext modifiers={[restrictToVerticalAxis]} onDragEnd={onDragEnd}>
+          <SortableContext
+            items={bootEntries.map((e) => e.name)}
+            strategy={verticalListSortingStrategy}
           >
-            <SortableContext
-              items={bootEntries.map((e) => e.name)}
-              strategy={verticalListSortingStrategy}
-            >
-              <Table
-                rowKey={"name"}
-                components={{ body: { row: Row } }}
-                dataSource={bootEntries}
-                columns={bootEntryColumns}
-              />
-            </SortableContext>
-          </DndContext>
-          {/*<Input.TextArea value={text} onChange={(e) => setText(e.target.value)} rows={20} />*/}
-        </Flex>
-      </Layout.Content>
-    </Layout>
+            <Table
+              rowKey={"name"}
+              components={{ body: { row: Row } }}
+              dataSource={bootEntries}
+              columns={bootEntryColumns}
+            />
+          </SortableContext>
+        </DndContext>
+        {/*<Input.TextArea value={text} onChange={(e) => setText(e.target.value)} rows={20} />*/}
+      </Flex>
+    </PS2WTLayout>
   );
 };

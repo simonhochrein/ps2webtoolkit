@@ -1,7 +1,7 @@
 - [ ] Info header with version numbers
-- [ ] File Browser
+- [X] File Browser
   - [ ] Grid View
-  - [ ] List View
+  - [X] List View
   - [ ] File Preview
 - [ ] FMCB Configurator
   - [X] Sortable table

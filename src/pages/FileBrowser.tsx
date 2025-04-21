@@ -11,6 +11,7 @@ import { FileOutlined, FolderOutlined } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import { useFiles } from "../FileContext";
 import byteSize from "byte-size";
+import { PS2WTLayout } from "../layout";
 
 const columns: TableColumnsType<FileEntry> = [
   {
@@ -79,59 +80,44 @@ export const FileBrowser = () => {
   };
 
   return (
-    <Layout style={{ height: "100vh", overflow: "hidden" }}>
-      <Layout.Header
-        style={{
-          backgroundColor: colors.blue[5],
-        }}
-      >
-        <Flex align={"center"} style={{ height: "100%" }}>
-          <Typography.Title level={4} style={{ margin: 0, color: "white" }}>
-            File Browser
-          </Typography.Title>
-        </Flex>
-      </Layout.Header>
-      <Layout.Content
-        style={{ flex: 1, height: 0, overflowY: "auto", padding: "1rem" }}
-      >
-        <Flex gap={'1rem'} vertical>
-          <Breadcrumb
-            itemRender={(v) =>
-              v.key == stack.length ? (
-                v.title
-              ) : (
-                <a onClick={v.onClick}>{v.title}</a>
-              )
-            }
-            items={[
-              {
-                key: 0,
-                title: "Root",
-                onClick: () => setStack([]),
-              },
-              ...stack.map((item, i) => ({
-                key: i + 1,
-                title: item,
-                onClick: () => setStack(stack.slice(0, i + 1)),
-              })),
-            ]}
-          />
-          <Table
-            rowKey={"name"}
-            style={{ height: "min-content" }}
-            dataSource={files}
-            pagination={false}
-            columns={columns}
-            onRow={(row) => ({
-              onClick: () => {
-                if (row.kind == "directory") {
-                  setStack([...stack, row.name]);
-                }
-              },
-            })}
-          />
-        </Flex>
-      </Layout.Content>
-    </Layout>
+    <PS2WTLayout title={"File Browser"}>
+      <Flex gap={"1rem"} vertical>
+        <Breadcrumb
+          itemRender={(v) =>
+            v.key == stack.length ? (
+              v.title
+            ) : (
+              <a onClick={v.onClick}>{v.title}</a>
+            )
+          }
+          items={[
+            {
+              key: 0,
+              title: "Root",
+              onClick: () => setStack([]),
+            },
+            ...stack.map((item, i) => ({
+              key: i + 1,
+              title: item,
+              onClick: () => setStack(stack.slice(0, i + 1)),
+            })),
+          ]}
+        />
+        <Table
+          rowKey={"name"}
+          style={{ height: "min-content" }}
+          dataSource={files}
+          pagination={false}
+          columns={columns}
+          onRow={(row) => ({
+            onClick: () => {
+              if (row.kind == "directory") {
+                setStack([...stack, row.name]);
+              }
+            },
+          })}
+        />
+      </Flex>
+    </PS2WTLayout>
   );
 };

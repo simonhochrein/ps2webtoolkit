@@ -34,38 +34,16 @@ import {
 } from "react-router";
 import { FileBrowser } from "./pages/FileBrowser";
 import { FMCB } from "./pages/FMCB";
+import { SD2PSX } from "./pages/SD2PSX";
 
 type MenuItem = Required<MenuProps>["items"][number];
-
-const items: MenuItem[] = [
-  {
-    key: "",
-    label: "File Browser",
-    icon: <FolderOutlined />,
-  },
-  {
-    key: "format",
-    label: "Format",
-    icon: <FormatPainterOutlined />,
-  },
-  {
-    key: "templates",
-    label: "Templates",
-    icon: <AppstoreAddOutlined />,
-  },
-  {
-    key: "fmcb",
-    label: "Free McBoot",
-    icon: <CodeOutlined />,
-  },
-];
 
 function isSupportedBrowser() {
   return !!window.showDirectoryPicker;
 }
 
 const Page = () => {
-  const { load } = useFiles();
+  const { load, handle } = useFiles();
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -78,6 +56,38 @@ const Page = () => {
       pathname: `/${e.key}`,
     });
   };
+
+  const items = useMemo<MenuItem[]>(() => {
+    return [
+      {
+        key: "",
+        label: "File Browser",
+        icon: <FolderOutlined />,
+      },
+      {
+        key: "format",
+        label: "Format",
+        icon: <FormatPainterOutlined />,
+        disabled: true,
+      },
+      {
+        key: "templates",
+        label: "Templates",
+        icon: <AppstoreAddOutlined />,
+        disabled: true,
+      },
+      {
+        key: "sd2psx",
+        label: "SD2PSX",
+        icon: <CodeOutlined />,
+      },
+      {
+        key: "fmcb",
+        label: "Free McBoot",
+        icon: <CodeOutlined />,
+      },
+    ];
+  }, [handle]);
 
   return (
     <Layout style={{ flex: 1 }}>
@@ -121,6 +131,7 @@ const Page = () => {
       <Layout.Content>
         <Routes>
           <Route path="/" Component={FileBrowser} />
+          <Route path="/sd2psx" Component={SD2PSX} />
           <Route path="/fmcb" Component={FMCB} />
         </Routes>
       </Layout.Content>
