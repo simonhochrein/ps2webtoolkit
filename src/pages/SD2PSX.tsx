@@ -90,7 +90,7 @@ export const SD2PSX: FC = () => {
           const max = Object.entries(result).length;
           let i = 0;
           for (const fileName in result) {
-            if (fileName.startsWith("__MACOSX")) {
+            if (fileName.startsWith("__MACOSX") || fileName.includes(".DS_Store")) {
               i++;
               continue;
             }
