@@ -4,9 +4,11 @@ import React, {
   PropsWithChildren,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 import { SAVED_DIRECTORY_KEY, useDB } from "./db";
+import { FileSystem } from "./FileSystem";
 
 enum FileType {
   Directory = "directory",
@@ -22,6 +24,7 @@ type FileEntry = {
 type FileContextType = {
   handle: FileSystemDirectoryHandle;
   load: () => void;
+  fs: FileSystem;
 };
 
 export const FileContext = createContext<FileContextType>(null);
@@ -34,22 +37,26 @@ export const FileProvider: FC<PropsWithChildren> = ({ children }) => {
 
   useEffect(() => {
     if (isReady) {
-      get(SAVED_DIRECTORY_KEY).then(async handle => {
+      get(SAVED_DIRECTORY_KEY).then(async (handle) => {
         const permission = await handle.requestPermission();
-        if(permission == 'granted') {
+        if (permission == "granted") {
           setHandle(handle);
         }
-      })
+      });
     }
   }, [isReady]);
 
   const load = async () => {
-    const directory = await window.showDirectoryPicker()
+    const directory = await window.showDirectoryPicker();
     setHandle(directory);
     await set(SAVED_DIRECTORY_KEY, directory);
-  }
+  };
+
+  const fs = useMemo(() => new FileSystem(handle), [handle]);
 
   return (
-    <FileContext.Provider value={{ handle, load }}>{children}</FileContext.Provider>
+    <FileContext.Provider value={{ handle, load, fs }}>
+      {children}
+    </FileContext.Provider>
   );
 };

@@ -133,24 +133,30 @@ const Row: FC<RowProps> = (props) => {
 };
 
 export const FMCB: FC = () => {
-  const { handle } = useFiles();
-  // const [text, setText] = useState("");
+  const { handle, fs } = useFiles();
+  const [initialized, setInitialized] = useState(false);
   const [cnf, setCnf] = useState<CNF>({});
   const [bootEntries, setBootEntries] = useState<BootEntry[]>([]);
 
   useEffect(() => {
     if (handle) {
-      handle.getFileHandle("FREEMCB.CNF").then(async (cnfFile) => {
-        const file = await cnfFile.getFile();
-        const text = await file.text();
-        const cnf = parseCNF(text);
-        setCnf(
-          Object.fromEntries(
-            Object.entries(cnf).filter(([key]) => !key.includes("OSDSYS_ITEM")),
-          ),
-        );
-        setBootEntries(getOSDSYSItems(cnf));
-        // setText(text);
+      fs.fileExists("FREEMCD.CNF").then((exists) => {
+        if (!exists) return setInitialized(false);
+
+        handle.getFileHandle("FREEMCB.CNF").then(async (cnfFile) => {
+          const file = await cnfFile.getFile();
+          const text = await file.text();
+          const cnf = parseCNF(text);
+          setCnf(
+            Object.fromEntries(
+              Object.entries(cnf).filter(
+                ([key]) => !key.includes("OSDSYS_ITEM"),
+              ),
+            ),
+          );
+          setBootEntries(getOSDSYSItems(cnf));
+          setInitialized(true);
+        });
       });
     }
   }, [handle]);
@@ -193,6 +199,14 @@ export const FMCB: FC = () => {
       });
     }
   };
+
+  if (!initialized) {
+    return (
+      <PS2WTLayout title={"FreeMcBoot Settings"}>
+        <Typography>FreeMcBoot is not configured</Typography>
+      </PS2WTLayout>
+    );
+  }
 
   return (
     <PS2WTLayout title={"FreeMcBoot Settings"}>

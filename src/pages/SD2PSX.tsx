@@ -2,18 +2,16 @@ import React, { FC, useEffect, useMemo, useState } from "react";
 import { useFiles } from "../FileContext";
 import {
   Button,
-  Dropdown,
   Flex,
-  Layout,
   Modal,
   Progress,
-  Select,
   Space,
   Typography,
 } from "antd";
-import { unzip } from "fflate";
-import { FileSystem } from "../utils";
+import { FileSystem } from "../FileSystem";
 import { PS2WTLayout } from "../layout";
+import { Archive } from "../Archive";
+import { StaticAssets, StaticFile } from "../StaticAssets";
 
 const imagePresets = [
   {
@@ -81,40 +79,19 @@ export const SD2PSX: FC = () => {
     }
   }, [initialized]);
 
-  const handleSetup = () => {
+  const handleSetup = async () => {
     setSetupOpen(true);
-    fetch("/MemoryCards.zip")
-      .then((res) => res.arrayBuffer())
-      .then((res) => {
-        unzip(new Uint8Array(res), {}, async (err, result) => {
-          const max = Object.entries(result).length;
-          let i = 0;
-          for (const fileName in result) {
-            if (fileName.startsWith("__MACOSX") || fileName.includes(".DS_Store")) {
-              i++;
-              continue;
-            }
-
-            try {
-              if (fileName.endsWith("/")) {
-                await fs.createDirectory(fileName);
-              } else {
-                await fs.createFile(fileName, result[fileName]);
-              }
-            } catch (e) {
-              console.log("Failed to create file", fileName, e);
-            }
-            i++;
-            setProgress(i / max);
-            if (i == max) {
-              setTimeout(() => {
-                setSetupOpen(false);
-                setInitialized(true);
-              }, 1000);
-            }
-          }
-        });
-      });
+    const res = await StaticAssets.fetch(StaticFile.MEMORYCARDS_ZIP);
+    const archive = new Archive(fs);
+    archive.extract(res, (progress) => {
+      setProgress(progress);
+      if (progress == 1) {
+        setTimeout(() => {
+          setSetupOpen(false);
+          setInitialized(true);
+        }, 1000);
+      }
+    });
   };
 
   return (

@@ -1112,7 +1112,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useCallback(callback, deps);
           }
-          function useMemo103(create, deps) {
+          function useMemo104(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useMemo(create, deps);
           }
@@ -1403,7 +1403,7 @@
               }
             }
           }
-          function checkPropTypes(typeSpecs, values, location, componentName, element) {
+          function checkPropTypes(typeSpecs, values, location2, componentName, element) {
             {
               var has = Function.call.bind(hasOwnProperty);
               for (var typeSpecName in typeSpecs) {
@@ -1411,23 +1411,23 @@
                   var error$1 = void 0;
                   try {
                     if (typeof typeSpecs[typeSpecName] !== "function") {
-                      var err2 = Error((componentName || "React class") + ": " + location + " type `" + typeSpecName + "` is invalid; it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.");
+                      var err2 = Error((componentName || "React class") + ": " + location2 + " type `" + typeSpecName + "` is invalid; it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.");
                       err2.name = "Invariant Violation";
                       throw err2;
                     }
-                    error$1 = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED");
+                    error$1 = typeSpecs[typeSpecName](values, typeSpecName, componentName, location2, null, "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED");
                   } catch (ex) {
                     error$1 = ex;
                   }
                   if (error$1 && !(error$1 instanceof Error)) {
                     setCurrentlyValidatingElement(element);
-                    error("%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).", componentName || "React class", location, typeSpecName, typeof error$1);
+                    error("%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).", componentName || "React class", location2, typeSpecName, typeof error$1);
                     setCurrentlyValidatingElement(null);
                   }
                   if (error$1 instanceof Error && !(error$1.message in loggedTypeFailures)) {
                     loggedTypeFailures[error$1.message] = true;
                     setCurrentlyValidatingElement(element);
-                    error("Failed %s type: %s", location, error$1.message);
+                    error("Failed %s type: %s", location2, error$1.message);
                     setCurrentlyValidatingElement(null);
                   }
                 }
@@ -1884,7 +1884,7 @@
           exports.useImperativeHandle = useImperativeHandle30;
           exports.useInsertionEffect = useInsertionEffect3;
           exports.useLayoutEffect = useLayoutEffect12;
-          exports.useMemo = useMemo103;
+          exports.useMemo = useMemo104;
           exports.useReducer = useReducer4;
           exports.useRef = useRef122;
           exports.useState = useState88;
@@ -10865,7 +10865,7 @@
               }
             }
           }
-          function checkPropTypes(typeSpecs, values, location, componentName, element) {
+          function checkPropTypes(typeSpecs, values, location2, componentName, element) {
             {
               var has2 = Function.call.bind(hasOwnProperty);
               for (var typeSpecName in typeSpecs) {
@@ -10873,23 +10873,23 @@
                   var error$1 = void 0;
                   try {
                     if (typeof typeSpecs[typeSpecName] !== "function") {
-                      var err2 = Error((componentName || "React class") + ": " + location + " type `" + typeSpecName + "` is invalid; it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.");
+                      var err2 = Error((componentName || "React class") + ": " + location2 + " type `" + typeSpecName + "` is invalid; it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.");
                       err2.name = "Invariant Violation";
                       throw err2;
                     }
-                    error$1 = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED");
+                    error$1 = typeSpecs[typeSpecName](values, typeSpecName, componentName, location2, null, "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED");
                   } catch (ex) {
                     error$1 = ex;
                   }
                   if (error$1 && !(error$1 instanceof Error)) {
                     setCurrentlyValidatingElement(element);
-                    error("%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).", componentName || "React class", location, typeSpecName, typeof error$1);
+                    error("%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).", componentName || "React class", location2, typeSpecName, typeof error$1);
                     setCurrentlyValidatingElement(null);
                   }
                   if (error$1 instanceof Error && !(error$1.message in loggedTypeFailures)) {
                     loggedTypeFailures[error$1.message] = true;
                     setCurrentlyValidatingElement(element);
-                    error("Failed %s type: %s", location, error$1.message);
+                    error("Failed %s type: %s", location2, error$1.message);
                     setCurrentlyValidatingElement(null);
                   }
                 }
@@ -13414,7 +13414,7 @@
             /*  */
             2
           );
-          var Layout6 = (
+          var Layout5 = (
             /*    */
             4
           );
@@ -14126,10 +14126,10 @@
             if ((currentlyRenderingFiber$1.mode & StrictEffectsMode) !== NoMode) {
               fiberFlags |= MountLayoutDev;
             }
-            return mountEffectImpl(fiberFlags, Layout6, create, deps);
+            return mountEffectImpl(fiberFlags, Layout5, create, deps);
           }
           function updateLayoutEffect(create, deps) {
-            return updateEffectImpl(Update, Layout6, create, deps);
+            return updateEffectImpl(Update, Layout5, create, deps);
           }
           function imperativeHandleEffect(create, ref) {
             if (typeof ref === "function") {
@@ -14167,7 +14167,7 @@
             if ((currentlyRenderingFiber$1.mode & StrictEffectsMode) !== NoMode) {
               fiberFlags |= MountLayoutDev;
             }
-            return mountEffectImpl(fiberFlags, Layout6, imperativeHandleEffect.bind(null, create, ref), effectDeps);
+            return mountEffectImpl(fiberFlags, Layout5, imperativeHandleEffect.bind(null, create, ref), effectDeps);
           }
           function updateImperativeHandle(ref, create, deps) {
             {
@@ -14176,7 +14176,7 @@
               }
             }
             var effectDeps = deps !== null && deps !== void 0 ? deps.concat([ref]) : null;
-            return updateEffectImpl(Update, Layout6, imperativeHandleEffect.bind(null, create, ref), effectDeps);
+            return updateEffectImpl(Update, Layout5, imperativeHandleEffect.bind(null, create, ref), effectDeps);
           }
           function mountDebugValue(value, formatterFn) {
           }
@@ -18702,7 +18702,7 @@
           };
           function safelyCallCommitHookLayoutEffectListMount(current2, nearestMountedAncestor) {
             try {
-              commitHookEffectListMount(Layout6, current2);
+              commitHookEffectListMount(Layout5, current2);
             } catch (error2) {
               captureCommitPhaseError(current2, nearestMountedAncestor, error2);
             }
@@ -18877,7 +18877,7 @@
                     {
                       if ((flags & Passive$1) !== NoFlags$1) {
                         markComponentPassiveEffectUnmountStarted(finishedWork);
-                      } else if ((flags & Layout6) !== NoFlags$1) {
+                      } else if ((flags & Layout5) !== NoFlags$1) {
                         markComponentLayoutEffectUnmountStarted(finishedWork);
                       }
                     }
@@ -18895,7 +18895,7 @@
                     {
                       if ((flags & Passive$1) !== NoFlags$1) {
                         markComponentPassiveEffectUnmountStopped();
-                      } else if ((flags & Layout6) !== NoFlags$1) {
+                      } else if ((flags & Layout5) !== NoFlags$1) {
                         markComponentLayoutEffectUnmountStopped();
                       }
                     }
@@ -18916,7 +18916,7 @@
                   {
                     if ((flags & Passive$1) !== NoFlags$1) {
                       markComponentPassiveEffectMountStarted(finishedWork);
-                    } else if ((flags & Layout6) !== NoFlags$1) {
+                    } else if ((flags & Layout5) !== NoFlags$1) {
                       markComponentLayoutEffectMountStarted(finishedWork);
                     }
                   }
@@ -18935,7 +18935,7 @@
                   {
                     if ((flags & Passive$1) !== NoFlags$1) {
                       markComponentPassiveEffectMountStopped();
-                    } else if ((flags & Layout6) !== NoFlags$1) {
+                    } else if ((flags & Layout5) !== NoFlags$1) {
                       markComponentLayoutEffectMountStopped();
                     }
                   }
@@ -18943,7 +18943,7 @@
                     var destroy2 = effect.destroy;
                     if (destroy2 !== void 0 && typeof destroy2 !== "function") {
                       var hookName = void 0;
-                      if ((effect.tag & Layout6) !== NoFlags) {
+                      if ((effect.tag & Layout5) !== NoFlags) {
                         hookName = "useLayoutEffect";
                       } else if ((effect.tag & Insertion) !== NoFlags) {
                         hookName = "useInsertionEffect";
@@ -19013,12 +19013,12 @@
                     if (finishedWork.mode & ProfileMode) {
                       try {
                         startLayoutEffectTimer();
-                        commitHookEffectListMount(Layout6 | HasEffect, finishedWork);
+                        commitHookEffectListMount(Layout5 | HasEffect, finishedWork);
                       } finally {
                         recordLayoutEffectDuration(finishedWork);
                       }
                     } else {
-                      commitHookEffectListMount(Layout6 | HasEffect, finishedWork);
+                      commitHookEffectListMount(Layout5 | HasEffect, finishedWork);
                     }
                   }
                   break;
@@ -19569,7 +19569,7 @@
                         if (destroy2 !== void 0) {
                           if ((tag & Insertion) !== NoFlags$1) {
                             safelyCallDestroy(deletedFiber, nearestMountedAncestor, destroy2);
-                          } else if ((tag & Layout6) !== NoFlags$1) {
+                          } else if ((tag & Layout5) !== NoFlags$1) {
                             {
                               markComponentLayoutEffectUnmountStarted(deletedFiber);
                             }
@@ -19724,14 +19724,14 @@
                   if (finishedWork.mode & ProfileMode) {
                     try {
                       startLayoutEffectTimer();
-                      commitHookEffectListUnmount(Layout6 | HasEffect, finishedWork, finishedWork.return);
+                      commitHookEffectListUnmount(Layout5 | HasEffect, finishedWork, finishedWork.return);
                     } catch (error2) {
                       captureCommitPhaseError(finishedWork, finishedWork.return, error2);
                     }
                     recordLayoutEffectDuration(finishedWork);
                   } else {
                     try {
-                      commitHookEffectListUnmount(Layout6 | HasEffect, finishedWork, finishedWork.return);
+                      commitHookEffectListUnmount(Layout5 | HasEffect, finishedWork, finishedWork.return);
                     } catch (error2) {
                       captureCommitPhaseError(finishedWork, finishedWork.return, error2);
                     }
@@ -20024,12 +20024,12 @@
                   if (fiber.mode & ProfileMode) {
                     try {
                       startLayoutEffectTimer();
-                      commitHookEffectListUnmount(Layout6, fiber, fiber.return);
+                      commitHookEffectListUnmount(Layout5, fiber, fiber.return);
                     } finally {
                       recordLayoutEffectDuration(fiber);
                     }
                   } else {
-                    commitHookEffectListUnmount(Layout6, fiber, fiber.return);
+                    commitHookEffectListUnmount(Layout5, fiber, fiber.return);
                   }
                   break;
                 }
@@ -20312,7 +20312,7 @@
                 case ForwardRef2:
                 case SimpleMemoComponent: {
                   try {
-                    commitHookEffectListMount(Layout6 | HasEffect, fiber);
+                    commitHookEffectListMount(Layout5 | HasEffect, fiber);
                   } catch (error2) {
                     captureCommitPhaseError(fiber, fiber.return, error2);
                   }
@@ -20353,7 +20353,7 @@
                 case ForwardRef2:
                 case SimpleMemoComponent: {
                   try {
-                    commitHookEffectListUnmount(Layout6 | HasEffect, fiber, fiber.return);
+                    commitHookEffectListUnmount(Layout5 | HasEffect, fiber, fiber.return);
                   } catch (error2) {
                     captureCommitPhaseError(fiber, fiber.return, error2);
                   }
@@ -75299,6 +75299,65 @@
 
   // src/FileContext.tsx
   var import_react117 = __toESM(require_react(), 1);
+
+  // src/FileSystem.ts
+  var FileSystem = class {
+    constructor(root2) {
+      this.root = root2;
+    }
+    async readFile(path2) {
+      const parts = path2.split("/");
+      const parent = await this.getHandle(parts.slice(0, -1));
+      const handle = await parent.getFileHandle(parts.pop());
+      const writable = await handle.getFile();
+      return await writable.text();
+    }
+    async fileExists(path2) {
+      try {
+        const parts = path2.split("/");
+        const handle = await this.getHandle(parts.slice(0, -1));
+        await handle.getFileHandle(parts.pop());
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+    async directoryExists(path2) {
+      try {
+        const parts = path2.split("/");
+        await this.getHandle(parts);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+    async createDirectory(path2) {
+      let _path = path2;
+      if (_path.endsWith("/")) {
+        _path = _path.slice(0, -1);
+      }
+      const parts = _path.split("/");
+      const parent = await this.getHandle(parts.slice(0, -1));
+      return await parent.getDirectoryHandle(parts.pop(), { create: true });
+    }
+    async createFile(path2, content) {
+      const parts = path2.split("/");
+      const parent = await this.getHandle(parts.slice(0, -1));
+      const handle = await parent.getFileHandle(parts.pop(), { create: true });
+      const writable = await handle.createWritable();
+      await writable.write(content);
+      await writable.close();
+    }
+    async getHandle(parts) {
+      let handle = this.root;
+      for (let part of parts) {
+        handle = await handle.getDirectoryHandle(part);
+      }
+      return handle;
+    }
+  };
+
+  // src/FileContext.tsx
   var FileContext = (0, import_react117.createContext)(null);
   var useFiles = () => (0, import_react117.useContext)(FileContext);
   var FileProvider = ({ children }) => {
@@ -75319,7 +75378,8 @@
       setHandle(directory);
       await set2(SAVED_DIRECTORY_KEY, directory);
     };
-    return /* @__PURE__ */ import_react117.default.createElement(FileContext.Provider, { value: { handle, load } }, children);
+    const fs = (0, import_react117.useMemo)(() => new FileSystem(handle), [handle]);
+    return /* @__PURE__ */ import_react117.default.createElement(FileContext.Provider, { value: { handle, load, fs } }, children);
   };
 
   // node_modules/react-router/dist/development/chunk-LSOULM7L.mjs
@@ -75367,9 +75427,9 @@
       }
       return href2 + "#" + (typeof to === "string" ? to : createPath(to));
     }
-    function validateHashLocation(location, to) {
+    function validateHashLocation(location2, to) {
       warning6(
-        location.pathname.charAt(0) === "/",
+        location2.pathname.charAt(0) === "/",
         `relative pathnames are not supported in hash history.push(${JSON.stringify(
           to
         )})`
@@ -75399,15 +75459,15 @@
   function createKey() {
     return Math.random().toString(36).substring(2, 10);
   }
-  function getHistoryState(location, index2) {
+  function getHistoryState(location2, index2) {
     return {
-      usr: location.state,
-      key: location.key,
+      usr: location2.state,
+      key: location2.key,
       idx: index2
     };
   }
   function createLocation(current, to, state = null, key) {
-    let location = {
+    let location2 = {
       pathname: typeof current === "string" ? current : current.pathname,
       search: "",
       hash: "",
@@ -75419,7 +75479,7 @@
       // keep as is for the time being and just let any incoming keys take precedence
       key: to && to.key || key || createKey()
     };
-    return location;
+    return location2;
   }
   function createPath({
     pathname = "/",
@@ -75476,11 +75536,11 @@
     }
     function push(to, state) {
       action = "PUSH";
-      let location = createLocation(history.location, to, state);
-      if (validateLocation) validateLocation(location, to);
+      let location2 = createLocation(history.location, to, state);
+      if (validateLocation) validateLocation(location2, to);
       index2 = getIndex() + 1;
-      let historyState = getHistoryState(location, index2);
-      let url2 = history.createHref(location);
+      let historyState = getHistoryState(location2, index2);
+      let url2 = history.createHref(location2);
       try {
         globalHistory.pushState(historyState, "", url2);
       } catch (error) {
@@ -75495,11 +75555,11 @@
     }
     function replace22(to, state) {
       action = "REPLACE";
-      let location = createLocation(history.location, to, state);
-      if (validateLocation) validateLocation(location, to);
+      let location2 = createLocation(history.location, to, state);
+      if (validateLocation) validateLocation(location2, to);
       index2 = getIndex();
-      let historyState = getHistoryState(location, index2);
-      let url2 = history.createHref(location);
+      let historyState = getHistoryState(location2, index2);
+      let url2 = history.createHref(location2);
       globalHistory.replaceState(historyState, "", url2);
       if (v5Compat && listener) {
         listener({ action, location: history.location, delta: 0 });
@@ -75559,8 +75619,8 @@
     return matchRoutesImpl(routes, locationArg, basename, false);
   }
   function matchRoutesImpl(routes, locationArg, basename, allowPartial) {
-    let location = typeof locationArg === "string" ? parsePath(locationArg) : locationArg;
-    let pathname = stripBasename(location.pathname || "/", basename);
+    let location2 = typeof locationArg === "string" ? parsePath(locationArg) : locationArg;
+    let pathname = stripBasename(location2.pathname || "/", basename);
     if (pathname == null) {
       return null;
     }
@@ -76095,18 +76155,18 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       );
     }
     let locationFromContext = useLocation();
-    let location;
+    let location2;
     if (locationArg) {
       let parsedLocationArg = typeof locationArg === "string" ? parsePath(locationArg) : locationArg;
       invariant(
         parentPathnameBase === "/" || parsedLocationArg.pathname?.startsWith(parentPathnameBase),
         `When overriding the location using \`<Routes location>\` or \`useRoutes(routes, location)\`, the location pathname must begin with the portion of the URL pathname that was matched by all parent routes. The current pathname base is "${parentPathnameBase}" but pathname "${parsedLocationArg.pathname}" was given in the \`location\` prop.`
       );
-      location = parsedLocationArg;
+      location2 = parsedLocationArg;
     } else {
-      location = locationFromContext;
+      location2 = locationFromContext;
     }
-    let pathname = location.pathname || "/";
+    let pathname = location2.pathname || "/";
     let remainingPathname = pathname;
     if (parentPathnameBase !== "/") {
       let parentSegments = parentPathnameBase.replace(/^\//, "").split("/");
@@ -76117,11 +76177,11 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     if (ENABLE_DEV_WARNINGS) {
       warning6(
         parentRoute || matches != null,
-        `No routes matched location "${location.pathname}${location.search}${location.hash}" `
+        `No routes matched location "${location2.pathname}${location2.search}${location2.hash}" `
       );
       warning6(
         matches == null || matches[matches.length - 1].route.element !== void 0 || matches[matches.length - 1].route.Component !== void 0 || matches[matches.length - 1].route.lazy !== void 0,
-        `Matched leaf route at location "${location.pathname}${location.search}${location.hash}" does not have an element or Component. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.`
+        `Matched leaf route at location "${location2.pathname}${location2.search}${location2.hash}" does not have an element or Component. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.`
       );
     }
     let renderedMatches = _renderMatches(
@@ -76155,7 +76215,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
               hash: "",
               state: null,
               key: "default",
-              ...location
+              ...location2
             },
             navigationType: "POP"
             /* Pop */
@@ -76522,9 +76582,9 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   }
   function Routes({
     children,
-    location
+    location: location2
   }) {
-    return useRoutes(createRoutesFromChildren(children), location);
+    return useRoutes(createRoutesFromChildren(children), location2);
   }
   function createRoutesFromChildren(children, parentPath = []) {
     let routes = [];
@@ -76739,7 +76799,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       )
     );
   }
-  function getNewMatchesForLinks(page, nextMatches, currentMatches, manifest, location, mode) {
+  function getNewMatchesForLinks(page, nextMatches, currentMatches, manifest, location2, mode) {
     let isNew = (match2, index2) => {
       if (!currentMatches[index2]) return true;
       return match2.route.id !== currentMatches[index2].route.id;
@@ -76769,7 +76829,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         if (match2.route.shouldRevalidate) {
           let routeChoice = match2.route.shouldRevalidate({
             currentUrl: new URL(
-              location.pathname + location.search + location.hash,
+              location2.pathname + location2.search + location2.hash,
               window.origin
             ),
             currentParams: currentMatches[0]?.params || {},
@@ -76982,7 +77042,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     matches: nextMatches,
     ...linkProps
   }) {
-    let location = useLocation();
+    let location2 = useLocation();
     let { manifest, routeModules } = useFrameworkContext();
     let { basename } = useDataRouterContext2();
     let { loaderData, matches } = useDataRouterStateContext();
@@ -76992,10 +77052,10 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         nextMatches,
         matches,
         manifest,
-        location,
+        location2,
         "data"
       ),
-      [page, nextMatches, matches, manifest, location]
+      [page, nextMatches, matches, manifest, location2]
     );
     let newMatchesForAssets = React910.useMemo(
       () => getNewMatchesForLinks(
@@ -77003,13 +77063,13 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         nextMatches,
         matches,
         manifest,
-        location,
+        location2,
         "assets"
       ),
-      [page, nextMatches, matches, manifest, location]
+      [page, nextMatches, matches, manifest, location2]
     );
     let dataHrefs = React910.useMemo(() => {
-      if (page === location.pathname + location.search + location.hash) {
+      if (page === location2.pathname + location2.search + location2.hash) {
         return [];
       }
       let routesParams = /* @__PURE__ */ new Set();
@@ -77041,7 +77101,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     }, [
       basename,
       loaderData,
-      location,
+      location2,
       manifest,
       newMatchesForData,
       nextMatches,
@@ -77224,14 +77284,14 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       ...rest
     }, ref) {
       let path2 = useResolvedPath(to, { relative: rest.relative });
-      let location = useLocation();
+      let location2 = useLocation();
       let routerState = React1010.useContext(DataRouterStateContext);
       let { navigator: navigator2, basename } = React1010.useContext(NavigationContext);
       let isTransitioning = routerState != null && // Conditional usage is OK here because the usage of a data router is static
       // eslint-disable-next-line react-hooks/rules-of-hooks
       useViewTransitionState(path2) && viewTransition === true;
       let toPathname = navigator2.encodeLocation ? navigator2.encodeLocation(path2).pathname : path2.pathname;
-      let locationPathname = location.pathname;
+      let locationPathname = location2.pathname;
       let nextLocationPathname = routerState && routerState.navigation && routerState.navigation.location ? routerState.navigation.location.pathname : null;
       if (!caseSensitive) {
         locationPathname = locationPathname.toLowerCase();
@@ -77336,19 +77396,19 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   }) {
     let remixContext = React1010.useContext(FrameworkContext);
     let { basename } = React1010.useContext(NavigationContext);
-    let location = useLocation();
+    let location2 = useLocation();
     let matches = useMatches();
     useScrollRestoration({ getKey: getKey3, storageKey });
     let ssrKey = React1010.useMemo(
       () => {
         if (!remixContext || !getKey3) return null;
         let userKey = getScrollRestorationKey(
-          location,
+          location2,
           matches,
           basename,
           getKey3
         );
-        return userKey !== location.key ? userKey : null;
+        return userKey !== location2.key ? userKey : null;
       },
       // Nah, we only need this the first time for the SSR render
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -77409,13 +77469,13 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     viewTransition
   } = {}) {
     let navigate = useNavigate();
-    let location = useLocation();
+    let location2 = useLocation();
     let path2 = useResolvedPath(to, { relative });
     return React1010.useCallback(
       (event) => {
         if (shouldProcessLinkClick(event, target)) {
           event.preventDefault();
-          let replace22 = replaceProp !== void 0 ? replaceProp : createPath(location) === createPath(path2);
+          let replace22 = replaceProp !== void 0 ? replaceProp : createPath(location2) === createPath(path2);
           navigate(to, {
             replace: replace22,
             state,
@@ -77426,7 +77486,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         }
       },
       [
-        location,
+        location2,
         navigate,
         path2,
         replaceProp,
@@ -77488,9 +77548,9 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     invariant(routeContext, "useFormAction must be used inside a RouteContext");
     let [match2] = routeContext.matches.slice(-1);
     let path2 = { ...useResolvedPath(action ? action : ".", { relative }) };
-    let location = useLocation();
+    let location2 = useLocation();
     if (action == null) {
-      path2.search = location.search;
+      path2.search = location2.search;
       let params = new URLSearchParams(path2.search);
       let indexValues = params.getAll("index");
       let hasNakedIndexParam = indexValues.some((v) => v === "");
@@ -77511,23 +77571,23 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   }
   var SCROLL_RESTORATION_STORAGE_KEY = "react-router-scroll-positions";
   var savedScrollPositions = {};
-  function getScrollRestorationKey(location, matches, basename, getKey3) {
+  function getScrollRestorationKey(location2, matches, basename, getKey3) {
     let key = null;
     if (getKey3) {
       if (basename !== "/") {
         key = getKey3(
           {
-            ...location,
-            pathname: stripBasename(location.pathname, basename) || location.pathname
+            ...location2,
+            pathname: stripBasename(location2.pathname, basename) || location2.pathname
           },
           matches
         );
       } else {
-        key = getKey3(location, matches);
+        key = getKey3(location2, matches);
       }
     }
     if (key == null) {
-      key = location.key;
+      key = location2.key;
     }
     return key;
   }
@@ -77544,7 +77604,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       /* UseScrollRestoration */
     );
     let { basename } = React1010.useContext(NavigationContext);
-    let location = useLocation();
+    let location2 = useLocation();
     let matches = useMatches();
     let navigation = useNavigation();
     React1010.useEffect(() => {
@@ -77556,7 +77616,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     usePageHide(
       React1010.useCallback(() => {
         if (navigation.state === "idle") {
-          let key = getScrollRestorationKey(location, matches, basename, getKey3);
+          let key = getScrollRestorationKey(location2, matches, basename, getKey3);
           savedScrollPositions[key] = window.scrollY;
         }
         try {
@@ -77571,7 +77631,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           );
         }
         window.history.scrollRestoration = "auto";
-      }, [navigation.state, getKey3, basename, location, matches, storageKey])
+      }, [navigation.state, getKey3, basename, location2, matches, storageKey])
     );
     if (typeof document !== "undefined") {
       React1010.useLayoutEffect(() => {
@@ -77589,7 +77649,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         let disableScrollRestoration = router?.enableScrollRestoration(
           savedScrollPositions,
           () => window.scrollY,
-          getKey3 ? (location2, matches2) => getScrollRestorationKey(location2, matches2, basename, getKey3) : void 0
+          getKey3 ? (location22, matches2) => getScrollRestorationKey(location22, matches2, basename, getKey3) : void 0
         );
         return () => disableScrollRestoration && disableScrollRestoration();
       }, [router, basename, getKey3]);
@@ -77601,9 +77661,9 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           window.scrollTo(0, restoreScrollPosition);
           return;
         }
-        if (location.hash) {
+        if (location2.hash) {
           let el = document.getElementById(
-            decodeURIComponent(location.hash.slice(1))
+            decodeURIComponent(location2.hash.slice(1))
           );
           if (el) {
             el.scrollIntoView();
@@ -77614,7 +77674,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           return;
         }
         window.scrollTo(0, 0);
-      }, [location, restoreScrollPosition, preventScrollReset]);
+      }, [location2, restoreScrollPosition, preventScrollReset]);
     }
   }
   function usePageHide(callback, options) {
@@ -81706,21 +81766,28 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     return /* @__PURE__ */ import_react124.default.createElement(RowContext.Provider, { value: contextValue }, /* @__PURE__ */ import_react124.default.createElement("tr", { ...props, ref: setNodeRef, style: style2, ...attributes2 }));
   };
   var FMCB = () => {
-    const { handle } = useFiles();
+    const { handle, fs } = useFiles();
+    const [initialized, setInitialized] = (0, import_react124.useState)(false);
     const [cnf, setCnf] = (0, import_react124.useState)({});
     const [bootEntries, setBootEntries] = (0, import_react124.useState)([]);
     (0, import_react124.useEffect)(() => {
       if (handle) {
-        handle.getFileHandle("FREEMCB.CNF").then(async (cnfFile) => {
-          const file = await cnfFile.getFile();
-          const text = await file.text();
-          const cnf2 = parseCNF(text);
-          setCnf(
-            Object.fromEntries(
-              Object.entries(cnf2).filter(([key]) => !key.includes("OSDSYS_ITEM"))
-            )
-          );
-          setBootEntries(getOSDSYSItems(cnf2));
+        fs.fileExists("FREEMCD.CNF").then((exists) => {
+          if (!exists) return setInitialized(false);
+          handle.getFileHandle("FREEMCB.CNF").then(async (cnfFile) => {
+            const file = await cnfFile.getFile();
+            const text = await file.text();
+            const cnf2 = parseCNF(text);
+            setCnf(
+              Object.fromEntries(
+                Object.entries(cnf2).filter(
+                  ([key]) => !key.includes("OSDSYS_ITEM")
+                )
+              )
+            );
+            setBootEntries(getOSDSYSItems(cnf2));
+            setInitialized(true);
+          });
         });
       }
     }, [handle]);
@@ -81760,6 +81827,9 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         });
       }
     };
+    if (!initialized) {
+      return /* @__PURE__ */ import_react124.default.createElement(PS2WTLayout, { title: "FreeMcBoot Settings" }, /* @__PURE__ */ import_react124.default.createElement(typography_default, null, "FreeMcBoot is not configured"));
+    }
     return /* @__PURE__ */ import_react124.default.createElement(PS2WTLayout, { title: "FreeMcBoot Settings" }, /* @__PURE__ */ import_react124.default.createElement(flex_default, { vertical: true, gap: "1rem" }, /* @__PURE__ */ import_react124.default.createElement(flex_default, null, /* @__PURE__ */ import_react124.default.createElement(button_default2, { type: "primary", onClick: save }, "Save")), /* @__PURE__ */ import_react124.default.createElement(DndContext, { modifiers: [restrictToVerticalAxis], onDragEnd }, /* @__PURE__ */ import_react124.default.createElement(
       SortableContext,
       {
@@ -82391,42 +82461,52 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     return tAll;
   }
 
-  // src/utils.ts
-  var FileSystem = class {
-    constructor(root2) {
-      this.root = root2;
+  // src/Archive.ts
+  var Archive = class {
+    constructor(fs) {
+      this.fs = fs;
     }
-    async readFile(path2) {
-      const parts = path2.split("/");
-      const parent = await this.getHandle(parts.slice(0, -1));
-      const handle = await parent.getFileHandle(parts.pop());
-      const writable = await handle.getFile();
-      return await writable.text();
+    extract(archive, progressCb) {
+      unzip(new Uint8Array(archive), {}, async (err2, result) => {
+        const max2 = Object.entries(result).length;
+        let i = 0;
+        for (const fileName in result) {
+          if (fileName.startsWith("__MACOSX") || fileName.includes(".DS_Store")) {
+            i++;
+            continue;
+          }
+          try {
+            if (fileName.endsWith("/")) {
+              await this.fs.createDirectory(fileName);
+            } else {
+              await this.fs.createFile(fileName, result[fileName]);
+            }
+          } catch (e) {
+            console.log("Failed to create file", fileName, e);
+          }
+          i++;
+          progressCb(i / max2);
+        }
+      });
     }
-    async createDirectory(path2) {
-      let _path = path2;
-      if (_path.endsWith("/")) {
-        _path = _path.slice(0, -1);
+  };
+
+  // src/StaticAssets.ts
+  var StaticAssets = class {
+    static async fetch(path2) {
+      const arrayBuffer = await fetch(this.resolve(path2)).then(
+        (res) => res.arrayBuffer()
+      );
+      return new Uint8Array(arrayBuffer);
+    }
+    static resolve(b) {
+      if (this.base.endsWith("/")) {
+        return this.base + b;
+      } else {
+        return this.base + "/" + b;
       }
-      const parts = _path.split("/");
-      const parent = await this.getHandle(parts.slice(0, -1));
-      return await parent.getDirectoryHandle(parts.pop(), { create: true });
     }
-    async createFile(path2, content) {
-      const parts = path2.split("/");
-      const parent = await this.getHandle(parts.slice(0, -1));
-      const handle = await parent.getFileHandle(parts.pop(), { create: true });
-      const writable = await handle.createWritable();
-      await writable.write(content);
-      await writable.close();
-    }
-    async getHandle(parts) {
-      let handle = this.root;
-      for (let part of parts) {
-        handle = await handle.getDirectoryHandle(part);
-      }
-      return handle;
-    }
+    static base = location.pathname;
   };
 
   // src/pages/SD2PSX.tsx
@@ -82459,37 +82539,18 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         });
       }
     }, [initialized]);
-    const handleSetup = () => {
+    const handleSetup = async () => {
       setSetupOpen(true);
-      fetch("/MemoryCards.zip").then((res) => res.arrayBuffer()).then((res) => {
-        unzip(new Uint8Array(res), {}, async (err2, result) => {
-          const max2 = Object.entries(result).length;
-          let i = 0;
-          for (const fileName in result) {
-            console.log(fileName, fileName.includes(".DS_Store"));
-            if (fileName.startsWith("__MACOSX") || fileName.includes(".DS_Store")) {
-              i++;
-              continue;
-            }
-            try {
-              if (fileName.endsWith("/")) {
-                await fs.createDirectory(fileName);
-              } else {
-                await fs.createFile(fileName, result[fileName]);
-              }
-            } catch (e) {
-              console.log("Failed to create file", fileName, e);
-            }
-            i++;
-            setProgress(i / max2);
-            if (i == max2) {
-              setTimeout(() => {
-                setSetupOpen(false);
-                setInitialized(true);
-              }, 1e3);
-            }
-          }
-        });
+      const res = await StaticAssets.fetch("MemoryCards.zip" /* MEMORYCARDS_ZIP */);
+      const archive = new Archive(fs);
+      archive.extract(res, (progress2) => {
+        setProgress(progress2);
+        if (progress2 == 1) {
+          setTimeout(() => {
+            setSetupOpen(false);
+            setInitialized(true);
+          }, 1e3);
+        }
       });
     };
     return /* @__PURE__ */ import_react125.default.createElement(PS2WTLayout, { title: "SD2PSX" }, handle && (initialized ? /* @__PURE__ */ import_react125.default.createElement(flex_default, { vertical: true }, /* @__PURE__ */ import_react125.default.createElement(typography_default.Title, null, "Ready to go!"), /* @__PURE__ */ import_react125.default.createElement("pre", null, text)) : /* @__PURE__ */ import_react125.default.createElement(flex_default, { vertical: true }, /* @__PURE__ */ import_react125.default.createElement(typography_default.Paragraph, null, "SD2PSX not configured"), /* @__PURE__ */ import_react125.default.createElement("div", null, /* @__PURE__ */ import_react125.default.createElement(button_default2, { type: "primary", onClick: handleSetup }, "Setup")))), /* @__PURE__ */ import_react125.default.createElement(
