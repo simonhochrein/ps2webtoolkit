@@ -2,6 +2,7 @@ export class FileSystem {
   constructor(private root: FileSystemDirectoryHandle) {}
 
   async readFile(path: string): Promise<string> {
+    console.trace('readFile', path);
     const parts = path.split("/");
     const parent = await this.getHandle(parts.slice(0, -1));
 
@@ -11,6 +12,7 @@ export class FileSystem {
   }
 
   async writeFile(path: string, text: string) {
+    console.trace('readFile', path, text);
     const parts = path.split("/");
     const parent = await this.getHandle(parts.slice(0, -1));
 
@@ -21,6 +23,7 @@ export class FileSystem {
   }
 
   async fileExists(path: string): Promise<boolean> {
+    console.trace('fileExists', path);
     try {
       const parts = path.split("/");
       const handle = await this.getHandle(parts.slice(0, -1));
@@ -32,6 +35,7 @@ export class FileSystem {
   }
 
   async directoryExists(path: string): Promise<boolean> {
+    console.trace('directoryExists', path);
     try {
       const parts = path.split("/");
       await this.getHandle(parts);
@@ -42,6 +46,7 @@ export class FileSystem {
   }
 
   async createDirectory(path: string) {
+    console.trace('createDirectory', path);
     let _path = path;
     if (_path.endsWith("/")) {
       _path = _path.slice(0, -1);
@@ -53,6 +58,7 @@ export class FileSystem {
   }
 
   async createFile(path: string, content: Uint8Array) {
+    console.trace('createFile', path, content);
     const parts = path.split("/");
     const parent = await this.getHandle(parts.slice(0, -1));
 
@@ -63,6 +69,7 @@ export class FileSystem {
   }
 
   private async getHandle(parts: string[]) {
+    console.trace('getHandle', parts);
     let handle = this.root;
     for (let part of parts) {
       handle = await handle.getDirectoryHandle(part);

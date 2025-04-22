@@ -78125,6 +78125,7 @@
       this.root = root2;
     }
     async readFile(path2) {
+      console.trace("readFile", path2);
       const parts = path2.split("/");
       const parent = await this.getHandle(parts.slice(0, -1));
       const handle = await parent.getFileHandle(parts.pop());
@@ -78132,6 +78133,7 @@
       return await writable.text();
     }
     async writeFile(path2, text) {
+      console.trace("readFile", path2, text);
       const parts = path2.split("/");
       const parent = await this.getHandle(parts.slice(0, -1));
       const handle = await parent.getFileHandle(parts.pop());
@@ -78140,6 +78142,7 @@
       await writable.close();
     }
     async fileExists(path2) {
+      console.trace("fileExists", path2);
       try {
         const parts = path2.split("/");
         const handle = await this.getHandle(parts.slice(0, -1));
@@ -78150,6 +78153,7 @@
       }
     }
     async directoryExists(path2) {
+      console.trace("directoryExists", path2);
       try {
         const parts = path2.split("/");
         await this.getHandle(parts);
@@ -78159,6 +78163,7 @@
       }
     }
     async createDirectory(path2) {
+      console.trace("createDirectory", path2);
       let _path = path2;
       if (_path.endsWith("/")) {
         _path = _path.slice(0, -1);
@@ -78168,6 +78173,7 @@
       return await parent.getDirectoryHandle(parts.pop(), { create: true });
     }
     async createFile(path2, content) {
+      console.trace("createFile", path2, content);
       const parts = path2.split("/");
       const parent = await this.getHandle(parts.slice(0, -1));
       const handle = await parent.getFileHandle(parts.pop(), { create: true });
@@ -78176,6 +78182,7 @@
       await writable.close();
     }
     async getHandle(parts) {
+      console.trace("getHandle", parts);
       let handle = this.root;
       for (let part of parts) {
         handle = await handle.getDirectoryHandle(part);
@@ -85619,7 +85626,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         },
         {
           key: "fmcb",
-          label: "Free McBoot",
+          label: "FreeMcBoot",
           icon: /* @__PURE__ */ import_react127.default.createElement(CodeOutlined_default2, null)
         }
       ];
