@@ -1,0 +1,1 @@
+export const isWindows = 'userAgentData' in navigator && (navigator.userAgentData as any).platform == 'Windows';

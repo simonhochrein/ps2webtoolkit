@@ -23,6 +23,7 @@ import { Archive } from "../Archive";
 import { StaticAssets, StaticFile } from "../StaticAssets";
 import { IniWriter, IniParser, Ini } from "../Ini";
 import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
+import { isWindows } from "../platform";
 
 const imagePresets = [
   {
@@ -85,12 +86,18 @@ export const SettingsEditor: FC = () => {
   const { lg } = useBreakpoint();
 
   useEffect(() => {
+    if(!isWindows) {
+      load();
+    }
+  }, [handle]);
+
+  const load = () => {
     new IniParser(fs)
       .read<SD2PSXSettings>(".sd2psx/settings.ini")
       .then((settings) => {
         setIni(settings);
       });
-  }, [handle]);
+  }
 
   const onValuesChange = (_value, newState) => {
     setIni(newState);
@@ -113,7 +120,13 @@ export const SettingsEditor: FC = () => {
     message.success("SD2PSX Configuration Saved");
   };
 
-  if (!ini) return null;
+  if (!ini) {
+    if(isWindows) {
+      return <Button onClick={load}>Select settings.ini</Button>;
+    } else {
+      return null;
+    }
+  }
 
   return (
     <Form
@@ -248,7 +261,6 @@ export const SD2PSX: FC = () => {
   const [initialized, setInitialized] = useState(false);
   const [setupOpen, setSetupOpen] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [text, setText] = useState("");
 
   useEffect(() => {
     if (handle) {
@@ -264,14 +276,6 @@ export const SD2PSX: FC = () => {
         });
     }
   }, [handle]);
-
-  useEffect(() => {
-    if (initialized) {
-      fs.readFile(".sd2psx/settings.ini").then((config) => {
-        setText(config);
-      });
-    }
-  }, [initialized]);
 
   const handleSetup = async () => {
     setSetupOpen(true);

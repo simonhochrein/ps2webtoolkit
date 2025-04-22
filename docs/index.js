@@ -30828,7 +30828,7 @@
       children,
       csp: customCsp,
       autoInsertSpaceInButton,
-      alert,
+      alert: alert2,
       anchor,
       form,
       locale: locale6,
@@ -30927,7 +30927,7 @@
     const baseConfig = {
       csp,
       autoInsertSpaceInButton,
-      alert,
+      alert: alert2,
       anchor,
       locale: locale6 || legacyLocale,
       direction,
@@ -78119,6 +78119,9 @@
   // src/FileContext.tsx
   var import_react118 = __toESM(require_react(), 1);
 
+  // src/platform.ts
+  var isWindows = "userAgentData" in navigator && navigator.userAgentData.platform == "Windows";
+
   // src/FileSystem.ts
   var FileSystem = class {
     constructor(root2) {
@@ -78128,7 +78131,29 @@
       console.trace("readFile", path2);
       const parts = path2.split("/");
       const parent = await this.getHandle(parts.slice(0, -1));
-      const handle = await parent.getFileHandle(parts.pop());
+      const filename = parts.pop();
+      let handle;
+      if (isWindows && filename.endsWith(".ini")) {
+        const result = await window.showOpenFilePicker({
+          excludeAcceptAllOption: true,
+          startIn: parent,
+          multiple: false,
+          types: [
+            {
+              accept: {
+                "application/ini": [".ini"]
+              }
+            }
+          ]
+        });
+        if (!result) {
+          alert("Canceled. Please reload the page and try again");
+          throw new Error("Canceled");
+        }
+        handle = result[0];
+      } else {
+        handle = await parent.getFileHandle(filename);
+      }
       const writable = await handle.getFile();
       return await writable.text();
     }
@@ -78136,7 +78161,29 @@
       console.trace("readFile", path2, text);
       const parts = path2.split("/");
       const parent = await this.getHandle(parts.slice(0, -1));
-      const handle = await parent.getFileHandle(parts.pop());
+      const filename = parts.pop();
+      let handle;
+      if (isWindows && filename.endsWith(".ini")) {
+        const result = await window.showSaveFilePicker({
+          suggestedName: filename,
+          excludeAcceptAllOption: true,
+          startIn: parent,
+          types: [
+            {
+              accept: {
+                "application/ini": [".ini"]
+              }
+            }
+          ]
+        });
+        if (!result) {
+          alert("Canceled. Please reload the page and try again");
+          throw new Error("Canceled");
+        }
+        handle = result;
+      } else {
+        handle = await parent.getFileHandle(filename);
+      }
       const writable = await handle.createWritable();
       await writable.write(text);
       await writable.close();
@@ -78176,7 +78223,30 @@
       console.trace("createFile", path2, content);
       const parts = path2.split("/");
       const parent = await this.getHandle(parts.slice(0, -1));
-      const handle = await parent.getFileHandle(parts.pop(), { create: true });
+      const filename = parts.pop();
+      let handle;
+      if (isWindows && filename.endsWith(".ini")) {
+        const result = await window.showSaveFilePicker({
+          suggestedName: filename,
+          excludeAcceptAllOption: true,
+          startIn: parent,
+          types: [
+            {
+              accept: {
+                "application/ini": [".ini"]
+              }
+            }
+          ]
+        });
+        if (!result) {
+          alert("Canceled. Please reload the page and try again");
+          throw new Error("Canceled");
+        }
+        console.log(result);
+        handle = result;
+      } else {
+        handle = await parent.getFileHandle(filename, { create: true });
+      }
       const writable = await handle.createWritable();
       await writable.write(content);
       await writable.close();
@@ -85301,7 +85371,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       this.fs = fs;
     }
     extract(archive, progressCb) {
-      unzip(new Uint8Array(archive), {}, async (err2, result) => {
+      unzip(archive, {}, async (err2, result) => {
         const max2 = Object.entries(result).length;
         let i = 0;
         for (const fileName in result) {
@@ -85406,10 +85476,15 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     const [ini, setIni] = (0, import_react126.useState)(null);
     const { lg } = useBreakpoint_default();
     (0, import_react126.useEffect)(() => {
+      if (!isWindows) {
+        load();
+      }
+    }, [handle]);
+    const load = () => {
       new IniParser(fs).read(".sd2psx/settings.ini").then((settings) => {
         setIni(settings);
       });
-    }, [handle]);
+    };
     const onValuesChange = (_value, newState) => {
       setIni(newState);
     };
@@ -85429,7 +85504,13 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       await new IniWriter(fs).write(".sd2psx/settings.ini", ini);
       message_default.success("SD2PSX Configuration Saved");
     };
-    if (!ini) return null;
+    if (!ini) {
+      if (isWindows) {
+        return /* @__PURE__ */ import_react126.default.createElement(button_default2, { onClick: load }, "Select settings.ini");
+      } else {
+        return null;
+      }
+    }
     return /* @__PURE__ */ import_react126.default.createElement(
       form_default,
       {
@@ -85539,7 +85620,6 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     const [initialized, setInitialized] = (0, import_react126.useState)(false);
     const [setupOpen, setSetupOpen] = (0, import_react126.useState)(false);
     const [progress, setProgress] = (0, import_react126.useState)(0);
-    const [text, setText] = (0, import_react126.useState)("");
     (0, import_react126.useEffect)(() => {
       if (handle) {
         handle.getDirectoryHandle("MemoryCards").then(() => {
@@ -85551,13 +85631,6 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         });
       }
     }, [handle]);
-    (0, import_react126.useEffect)(() => {
-      if (initialized) {
-        fs.readFile(".sd2psx/settings.ini").then((config) => {
-          setText(config);
-        });
-      }
-    }, [initialized]);
     const handleSetup = async () => {
       setSetupOpen(true);
       const res = await StaticAssets.fetch("MemoryCards.zip" /* MEMORYCARDS_ZIP */);

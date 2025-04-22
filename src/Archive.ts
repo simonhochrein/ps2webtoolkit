@@ -5,8 +5,8 @@ export class Archive {
   constructor(private fs: FileSystem) {
   }
 
-  extract(archive: ArrayBuffer, progressCb: (progress: number) => void) {
-    unzip(new Uint8Array(archive), {}, async (err, result) => {
+  extract(archive: Uint8Array, progressCb: (progress: number) => void) {
+    unzip(archive, {}, async (err, result) => {
       const max = Object.entries(result).length;
       let i = 0;
       for (const fileName in result) {
