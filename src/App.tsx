@@ -83,7 +83,7 @@ const Page = () => {
       },
       {
         key: "fmcb",
-        label: "Free McBoot",
+        label: "FreeMcBoot",
         icon: <CodeOutlined />,
       },
     ];
