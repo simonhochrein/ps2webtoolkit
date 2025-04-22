@@ -140,7 +140,7 @@ export const FMCB: FC = () => {
 
   useEffect(() => {
     if (handle) {
-      fs.fileExists("FREEMCD.CNF").then((exists) => {
+      fs.fileExists("FREEMCB.CNF").then((exists) => {
         if (!exists) return setInitialized(false);
 
         handle.getFileHandle("FREEMCB.CNF").then(async (cnfFile) => {
@@ -222,6 +222,7 @@ export const FMCB: FC = () => {
             strategy={verticalListSortingStrategy}
           >
             <Table
+              pagination={false}
               rowKey={"name"}
               components={{ body: { row: Row } }}
               dataSource={bootEntries}

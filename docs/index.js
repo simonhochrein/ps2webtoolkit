@@ -78196,6 +78196,7 @@
         await handle.getFileHandle(parts.pop());
         return true;
       } catch (e3) {
+        console.error(e3);
         return false;
       }
     }
@@ -84676,7 +84677,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     const [bootEntries, setBootEntries] = (0, import_react125.useState)([]);
     (0, import_react125.useEffect)(() => {
       if (handle) {
-        fs.fileExists("FREEMCD.CNF").then((exists) => {
+        fs.fileExists("FREEMCB.CNF").then((exists) => {
           if (!exists) return setInitialized(false);
           handle.getFileHandle("FREEMCB.CNF").then(async (cnfFile) => {
             const file = await cnfFile.getFile();
@@ -84743,6 +84744,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       /* @__PURE__ */ import_react125.default.createElement(
         table_default,
         {
+          pagination: false,
           rowKey: "name",
           components: { body: { row: Row2 } },
           dataSource: bootEntries,

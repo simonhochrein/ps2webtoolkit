@@ -78,6 +78,7 @@ export class FileSystem {
       await handle.getFileHandle(parts.pop());
       return true;
     } catch (e) {
+      console.trace("fileExists: err:", e);
       return false;
     }
   }
